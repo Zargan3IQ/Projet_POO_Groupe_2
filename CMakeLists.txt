@@ -3,4 +3,6 @@ project(Projet_POO_Groupe_2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Projet_POO_Groupe_2 main.cpp)
+add_executable(Projet_POO_Groupe_2 main.cpp
+        grid.cpp
+        grid.h)
