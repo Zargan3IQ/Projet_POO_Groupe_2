@@ -1,51 +1,39 @@
-Un jour je serai le meilleur dresseur
-Je me battrai sans répit
-Je ferai tout pour être vainqueur
-Et gagner les défis
-Je parcourrai la terre entière
-Traquant avec espoir
-Les Pokémon et leurs mystères
-Le secret de leurs pouvoirs
+Refrain :
+Il faut, il faut
+Un GitHub parfait, un code bien fait !
+On code ensemble, à l'unisson
+Propre et net, pas de confusion !
 
-(Refrain)
-Pokémon !
-Attrapez les tous
-C'est notre histoire
-Ensemble pour la victoire
-Pokémon !
-Rien ne nous arrêtera
-Notre amitié triomphera
-Pokémon !
-Attrapez les tous
-Même à notre âge !
-Un voyage d'apprentissage
-Ça demande du courage !
-Po-ké-mon !
-Attrapez-les tous!, attrapez-les tous!
-Yeah !
+Couplet 1 :
+Un commit à la fois, faut bien l'écrire,
+Chaque fonction, la nommer sans faiblir !
+Éviter les bugs, c’est notre quête,
+Sur GitHub, tout doit être net !
 
-Rien ni personne sur mon chemin
-Ne pourra me briser
-Car pour accomplir mon destin
-Je suis déterminé
-Quand il faudra passer à l'action
-Nos amis seront là
-Et tous ensemble nous gagnerons
-Le dernier des combats !
+Refrain :
+Il faut, il faut
+Un GitHub parfait, un code bien fait !
+On code ensemble, à l'unisson
+Propre et net, pas de confusion !
 
-(Refrain)
-Pokémon !
-Attrapez les tous
-C'est notre histoire
-Ensemble pour la victoire
-Pokémon !
-Rien ne nous arrêtera
-Notre amitié triomphera
-Pokémon !
-Attrapez les tous
-Même à notre âge !
-Un voyage d'apprentissage
-Ça demande du courage !
-Po-ké-mon !
-Attrapez-les tous!, attrapez-les tous!
-Yeah !
+Couplet 2 :
+Les pull requests, il faut bien les gérer,
+Les merges propres, jamais de conflit !
+Les tests unitaires, c'est essentiel,
+Pour que tout soit impeccable, sans égale !
+
+Refrain :
+Il faut, il faut
+Un GitHub parfait, un code bien fait !
+On code ensemble, à l'unisson
+Propre et net, pas de confusion !
+
+Pont :
+Le code est prêt, il doit briller,
+Révisions, refactorisation, tout est sous contrôle, c'est gagné !
+
+Refrain final :
+Il faut, il faut
+Un GitHub parfait, un code bien fait !
+On code ensemble, à l'unisson
+Propre et net, c'est la solution !
