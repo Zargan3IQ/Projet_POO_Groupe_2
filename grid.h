@@ -8,6 +8,11 @@ class grid {
 private:
     int width, height;
     std::vector<std::vector<Cell>> cells;
+    void update_p1_t1();
+
+    void update_p2_t1() ;
+    void update_p1_t2() ;
+    void update_p2_t2() ;
 
 public:
     grid(int w, int h);
@@ -22,6 +27,8 @@ public:
     void initializeWithState(const std::vector<std::vector<int>> &initialState);
     bool compareMatrix(const std::vector<std::vector<Cell>>& other) const;
     void update();
+
+
     //void display() const;
 };
 
