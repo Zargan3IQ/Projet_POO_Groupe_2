@@ -1,7 +1,7 @@
-#include <iostream>
+#include "game.h"
 
-int main()
-{
-    std::cout << "Hello, World!" << std::endl;
+int main() {
+    game Life;
+    Life.start();
     return 0;
 }
