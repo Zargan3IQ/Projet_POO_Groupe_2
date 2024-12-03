@@ -12,8 +12,6 @@ private:
     std::string directory;
 
 public:
-    std::string getEntryFile() const; //A voir si ils seront utiles
-    void setEntryFile(const std::string& fileName); //A voir si ils seront utiles
     void choseFile();
     std::vector<std::vector<int>> readGrid(int &width, int &height);
     void CreateDirectory();

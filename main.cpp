@@ -1,4 +1,5 @@
 #include "game.h"
+#include "Tests/Grid_Test.cpp"
 
 int main() {
     game Life;

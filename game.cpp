@@ -4,7 +4,7 @@
 #include <thread> // Pour std::this_thread::sleep_for
 
 game::game()
-    : g(0, 0), interface(nullptr), mode(0), intervalTime(1000), generationLimit(2000) {}
+        : Grid(1, 1), interface(nullptr), mode(0), intervalTime(1000), generationLimit(10000) {}
 
 game::~game() {
     delete interface;
@@ -26,8 +26,8 @@ void game::initializeGame() {
     int width, height;
     auto initialState = fileManager.readGrid(width, height);
 
-    g = grid(width, height);
-    g.initializeWithState(initialState);
+    Grid = grid(width, height);
+    Grid.initializeWithState(initialState);
 
     std::cout << "Choisissez le mode d'affichage :\n";
     std::cout << "1. Console\n";
@@ -42,26 +42,27 @@ void game::initializeGame() {
     if (mode == 2) {
         std::cout << "Entrez le temps entre chaque intervalle (ms) : ";
         std::cin >> intervalTime;
-        interface = new Interface(g, 10);
+        int cellSize = 10;
+        interface = new Interface(Grid, cellSize);
     }
 
     std::cout << "Etat initial de la grille :\n";
-    interface->display(g);
+    interface->display(Grid, 0);
 
     if (mode == 1) {
         fileManager.CreateDirectory();
-        fileManager.Save(g, 0);
+        fileManager.Save(Grid, 0);
     }
 }
 
 void game::runConsoleMode() {
     for (int generation = 1; generation <= generationLimit; ++generation) {
         processGeneration(generation);
-        interface->display(g);
-        fileManager.Save(g, generation);
+        interface->display(Grid, generation);
+        fileManager.Save(Grid, generation);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
+       }
 }
 
 void game::runGraphicsMode() {
@@ -73,17 +74,15 @@ void game::runGraphicsMode() {
 
         interface->pollEvents();
         processGeneration(generation);
-        interface->render(g);
+        interface->render(Grid, generation);
         std::this_thread::sleep_for(std::chrono::milliseconds(intervalTime));
     }
 }
 
 void game::processGeneration(int generation) {
-    auto previousState = g.getState();
-    g.update();
-    std::cout << "Generation : " << generation << std::endl;
-
-    if (g.compareMatrix(previousState)) {
+    auto previousState = Grid.getState();
+    Grid.update();
+    if (Grid.compareMatrix(previousState)) {
         std::cout << "Fin du jeu : Etat stable atteint a la generation " << generation << ".\n";
         generationLimit = generation;
     }

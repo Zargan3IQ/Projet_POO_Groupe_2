@@ -61,21 +61,18 @@ void grid::update() {
     else {
         std::vector<std::vector<Cell>> previousState = cells;
 
-            // Mise à jour parallèle
-            std::thread t1(&grid::updateHalf, this, 0, height / 2);
-            std::thread t2(&grid::updateHalf, this, height / 2, height);
+        // Mise à jour parallèle
+        std::thread t1(&grid::updateHalf, this, 0, height / 2);
+        std::thread t2(&grid::updateHalf, this, height / 2, height);
 
+        t1.join();
+        t2.join();
 
-
-            t1.join();
-            t2.join();
-
-            // Appliquer les mises à jour
-            for (int y = 0; y < height; ++y) {
-                for (int x = 0; x < width; ++x) {
-                    cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
-                }
+        // Appliquer les mises à jour
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
             }
         }
-
     }
+}
