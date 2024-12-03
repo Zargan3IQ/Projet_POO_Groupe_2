@@ -19,21 +19,45 @@ std::vector<std::vector<int>> FileManager::readGrid(int &width, int &height) {
         exit(EXIT_FAILURE);
     }
 
-    FileInput >> height >> width; //Lecture de la ppremière ligne
-    std::vector grid(height, std::vector<int>(width));
+    if (FileInput.peek() == std::ifstream::traits_type::eof()) {
+        std::cerr << "Erreur : Le fichier est vide.\n";
+        exit(EXIT_FAILURE);
+    }
 
-    // Lecture de la matrice
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            int cell;
-            FileInput >> cell;
-            grid[y][x] = cell;
+    FileInput >> height >> width; // Lecture de la première ligne
+
+    if (height <= 0 || width <= 0) {
+        std::cerr << "Erreur : Dimensions invalides dans le fichier (doivent etre positives).\n";
+        exit(EXIT_FAILURE);
+    }
+
+    std::vector grid(height, std::vector<int>(width));
+    int cellCount = 0;
+
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                if (!(FileInput >> grid[y][x])) {
+                    std::cerr << "Erreur : Donnees insuffisantes dans le fichier pour remplir la grille.\n";
+                    exit(EXIT_FAILURE);
+                }
+                cellCount++;
+            }
         }
+
+    // Vérification qu'il n'y a pas de données supplémentaires
+    int extraData;
+    if (FileInput >> extraData) {
+        std::cerr << "Erreur : Trop de données dans le fichier, dépassant les dimensions spécifiées.\n";
+        exit(EXIT_FAILURE);
+    }
+
+    if (cellCount != width * height) {
+        std::cerr << "Erreur : Les dimensions spécifiées ne correspondent pas aux données fournies.\n";
+        exit(EXIT_FAILURE);
     }
 
     FileInput.close();
     return grid;
-
 }
 
 void FileManager::CreateDirectory() {

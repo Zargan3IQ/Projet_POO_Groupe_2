@@ -4,7 +4,7 @@
 #include <thread> // Pour std::this_thread::sleep_for
 
 game::game()
-    : g(0, 0), interface(nullptr), mode(0), intervalTime(1000), generationLimit(2000) {}
+        : g(0, 0), interface(nullptr), mode(0), intervalTime(1000), generationLimit(10000) {}
 
 game::~game() {
     delete interface;
@@ -42,11 +42,12 @@ void game::initializeGame() {
     if (mode == 2) {
         std::cout << "Entrez le temps entre chaque intervalle (ms) : ";
         std::cin >> intervalTime;
-        interface = new Interface(g, 10);
+        int cellSize = 10;
+        interface = new Interface(g, cellSize);
     }
 
     std::cout << "Etat initial de la grille :\n";
-    interface->display(g);
+    interface->display(g, 0);
 
     if (mode == 1) {
         fileManager.CreateDirectory();
@@ -57,11 +58,11 @@ void game::initializeGame() {
 void game::runConsoleMode() {
     for (int generation = 1; generation <= generationLimit; ++generation) {
         processGeneration(generation);
-        interface->display(g);
+        interface->display(g, generation);
         fileManager.Save(g, generation);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
+       }
 }
 
 void game::runGraphicsMode() {
@@ -73,7 +74,7 @@ void game::runGraphicsMode() {
 
         interface->pollEvents();
         processGeneration(generation);
-        interface->render(g);
+        interface->render(g, generation);
         std::this_thread::sleep_for(std::chrono::milliseconds(intervalTime));
     }
 }
@@ -81,8 +82,6 @@ void game::runGraphicsMode() {
 void game::processGeneration(int generation) {
     auto previousState = g.getState();
     g.update();
-    std::cout << "Generation : " << generation << std::endl;
-
     if (g.compareMatrix(previousState)) {
         std::cout << "Fin du jeu : Etat stable atteint a la generation " << generation << ".\n";
         generationLimit = generation;
