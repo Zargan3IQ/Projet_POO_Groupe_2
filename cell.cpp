@@ -1,3 +1,6 @@
+#include <iostream>
+#include <ostream>
+
 #include "Cell.h"
 #include "grid.h"
 
@@ -6,14 +9,24 @@ int Cell::getIsAlive() const {
 }
 
 void Cell::setIsAlive(int state) {
-    isAlive = state;
+    if (state==1||state==2||state==3||state==0) {
+        isAlive = state;
+    }
+    else {
+        std::cout<<"Error in Cell::setIsAlive, state undefined"<<std::endl;
+    }
 }
 
 int Cell::getWillBeAlive() const {
     return willBeAlive;
 }
 void Cell::setWillBeAlive(int state) {
-    willBeAlive = state;
+    if (state==1||state==2||state==3||state==0) {
+        willBeAlive = state;
+    }
+    else {
+        std::cout<<"Error in Cell::willBeAlive, state undefined"<<std::endl;
+    }
 }
 
 // Calcule le futur état de la cellule
