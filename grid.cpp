@@ -1,12 +1,23 @@
 #include "grid.h"
 #include <thread>
 #include <chrono>
+#include <cmath>
+#include <iostream>
 
 // Builder de la classe grid
-grid::grid(int w, int h) : width(w), height(h), cells(w, std::vector<Cell>(h)) {}
+grid::grid(int w, int h) : width(w), height(h), cells(w, std::vector<Cell>(h)) {
+    if (w <= 0 || h <= 0) {
+        std::cerr <<" Error in grid initialization, incorrect width or heigt";
+        exit(EXIT_FAILURE);
+    }
+}
 
 const Cell& grid::getCell(int x, int y) const {
     return cells[x][y];
+}
+
+Cell& grid::getCell(int x, int y) {
+    return cells[y][x];
 }
 
 std::vector<std::vector<Cell>> grid::getState() const {
@@ -19,6 +30,15 @@ int grid::getWidth() const {
 int grid::getHeight() const {
     return height;
 }
+
+bool grid::getisToric() const {
+    return isToric;
+}
+
+void grid::setisToric(bool Toric) {
+    isToric = Toric;
+}
+
 
 void grid::initializeWithState(const std::vector<std::vector<int>> &initialState) {
     for (int y = 0; y < height; y++) {
@@ -39,55 +59,49 @@ bool grid::compareMatrix(const std::vector<std::vector<Cell>> &other) const {
     return true;
 }
 
-
-
-void grid::update_p1_t1() {
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height/2; y++) {
+void grid::updateHalf(int start, int end) {
+    for (int y = start; y < end; ++y) {
+        for (int x = 0; x < width; ++x) {
             cells[x][y].update(x, y, *this);
-        }
-    }
-
-}
-void grid::update_p2_t1() {
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height/2; y++) {
-            cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
-        }
-    }
-}
-
-
-void grid::update_p1_t2() {
-    for (int x = 0; x < width; x++) {
-        for (int y = height/2; y < height; y++) {
-            cells[x][y].update(x, y, *this);
-        }
-    }
-
-}
-
-void grid::update_p2_t2() {
-    for (int x = 0; x < width; x++) {
-        for (int y = height/2; y < height; y++) {
-            cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
         }
     }
 }
 
 void grid::update() {
-    std::vector<std::vector<Cell>> currentState = cells; // État actuel
-    std::thread t1(&grid::update_p1_t1, this);
-    std::thread t2(&grid::update_p1_t2, this);
-    t1.join();
-    t2.join();
-    std::thread t3(&grid::update_p2_t1, this);
-    std::thread t4(&grid::update_p2_t2, this);
-    t4.join();
-    t3.join();
+    if (width<2) {
+        updateHalf(0, height);
+    }
+    else {
+        std::vector<std::vector<Cell>> previousState = cells;
 
+        // Mise à jour parallèle
+        std::thread t1(&grid::updateHalf, this, 0, height / 2);
+        std::thread t2(&grid::updateHalf, this, height / 2, height);
 
+        t1.join();
+        t2.join();
 
-
+        // Appliquer les mises à jour
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
+            }
+        }
+    }
 }
 
+void grid::updateTest() {
+    std::vector<std::vector<Cell>> currentState = cells; // État actuel
+
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            cells[x][y].update(x, y, *this);
+        }
+    }
+
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());
+        }
+    }
+}

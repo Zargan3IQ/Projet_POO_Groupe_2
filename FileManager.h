@@ -12,12 +12,12 @@ private:
     std::string directory;
 
 public:
-    std::string getEntryFile() const; //A voir si ils seront utiles
-    void setEntryFile(const std::string& fileName); //A voir si ils seront utiles
+    void setentryFile(std::string File);
+    void setDirectory(std::string Directory);
     void choseFile();
     std::vector<std::vector<int>> readGrid(int &width, int &height);
-    void CreateDirectory();
-    void Save(const grid &grid,int gen);
+    void createDirectory();
+    void save(const grid &grid,int gen);
 };
 
 #endif // MANAGEFILE_H

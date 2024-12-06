@@ -7,7 +7,7 @@
 
 class game {
 private:
-    grid g;                       // La grille du jeu
+    grid Grid;                       // La grille du jeu
     FileManager fileManager;      // Gestionnaire de fichiers
     Interface* interface;         // Interface graphique (optionnelle)
     int mode;                     // Mode d'affichage
