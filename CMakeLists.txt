@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(SFML)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Project_POO_VF src/main.cpp
+add_executable(Project_POO_VF main.cpp
         grid.cpp
         grid.h
         FileManager.h
