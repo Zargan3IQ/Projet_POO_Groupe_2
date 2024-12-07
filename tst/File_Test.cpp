@@ -7,7 +7,7 @@
 static void testReadFile() {
 
     int width = 3, height = 3;
-    std::string File = "..//tst//Files_Test//Test_File.txt";
+    std::string File = "../Files_Test//Test_File.txt";
 
     FileManager fileManager;
     grid initialState(width, height);
@@ -34,46 +34,34 @@ static void testReadFile() {
 
 }
 
-/*
-static void testSaveFile() {
 
-    std::string File = "..//Tests//Files_Test//Tests_Save.txt";
+static void testSaveFile() {
+    std::string inputFile = "..//Files_Test//Tests_Save.txt";
+    std::string outputFile = "..//Files_Test//Tests_Save_out//generation_0.txt";
     int width = 3, height = 3;
 
     FileManager fileManager;
+    fileManager.setentryFile(inputFile);
+    fileManager.createDirectory();
+
+    std::vector<std::vector<int>> StateGrid = {
+        {0, 0, 1},
+        {1, 0, 1},
+        {0, 1, 1}
+    };
+
     grid initialState(width, height);
     grid expectedState(width, height);
+    initialState.initializeWithState(StateGrid);
+    expectedState.initializeWithState(StateGrid);
 
-    fileManager.setentryFile(File);
-    fileManager.CreateDirectory();
+    fileManager.setentryFile(outputFile);
+    fileManager.save(initialState, 0, width, height);
 
-    std::vector<std::vector<int>> expectedState1 = {
-        {0, 0, 1},
-        {1, 0, 1},
-        {0, 1, 1}
-    };
+    auto savedState = fileManager.readGrid(width, height);
+    initialState.initializeWithState(savedState);
 
-    std::vector<std::vector<int>> expectedState2 = {
-        {0, 0, 1},
-        {1, 0, 1},
-        {0, 1, 1}
-    };
-
-    std::string File2 = "..//Tests//Files_Test//Tests_Save_out//generation_0.txt";
-    fileManager.setentryFile(File2);
-
-    initialState.initializeWithState(expectedState1);
-    expectedState.initializeWithState(expectedState2);
-
-    fileManager.Save(initialState, 0);
-
-    auto initialFile = fileManager.readGrid(width, height);
-
-    bool areEqual = initialState.compareMatrix(expectedState.getState());
-
-    assert(areEqual);
+    assert(expectedState.compareMatrix(initialState.getState()));
 
     std::cout << "Test reussi : Fichier correctement sauvegarde" << std::endl;
 }
-
-*/

@@ -5,7 +5,7 @@
 static void testPerformance() {
     const int width = 500;
     const int height = 500;
-    const int iterations = 50   ;
+    const int iterations = 100;
 
     grid g(width, height);
 
