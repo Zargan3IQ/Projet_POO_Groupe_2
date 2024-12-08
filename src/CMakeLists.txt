@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(Projet_POO_Groupe_2)
+project(Project_POO_VF)
 
 include(FetchContent)
 set(BUILD_SHARED_LIBS OFF)
@@ -12,16 +12,17 @@ FetchContent_MakeAvailable(SFML)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Projet_POO_Groupe_2 main.cpp
+add_executable(Project_POO_VF main.cpp
         grid.cpp
         grid.h
         FileManager.h
         FileManager.cpp
-        cell.cpp
+       	cell.cpp
         cell.h
         game.cpp
         game.h
         Interface.cpp
-        Interface.h)
+        Interface.h
+)
 
-target_link_libraries(Projet_POO_Groupe_2 sfml-graphics)
+target_link_libraries(Project_POO_VF sfml-graphics)
