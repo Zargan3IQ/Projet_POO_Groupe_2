@@ -31,7 +31,6 @@ public:
     void initializeWithState(const std::vector<std::vector<int>> &initialState); // Initialise la grille avec un état donné.
     bool compareMatrix(const std::vector<std::vector<Cell>>& other) const; // Compare l'état actuel de la grille avec une autre matrice.
     void update(); // Met à jour l'état de la grille selon les règles définies.
-    //void updateTest(); // Met à jour la grille pour les tests
 };
 
 #endif // GRID_H

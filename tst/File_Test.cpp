@@ -31,13 +31,13 @@ static void testReadFile() {
 
     auto initialFile = fileManager.readGrid(width, height);
 
-    std::vector<std::vector<int>> expectedState2 = {
+    std::vector<std::vector<int>> gridexpectedState = {
         {0, 0, 0},
         {0, 1, 0},
         {0, 0, 0}
     };
 
-    expectedState.initializeWithState(expectedState2);
+    expectedState.initializeWithState(gridexpectedState);
     initialState.initializeWithState(initialFile);
 
     bool areEqual = initialState.compareMatrix(expectedState.getState());
