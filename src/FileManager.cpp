@@ -88,15 +88,19 @@ std::vector<std::vector<int>> FileManager::readGrid(int &width, int &height) {
 void FileManager::createDirectory() {
     // Génère un nom de répertoire basé sur le nom du fichier d'entrée
     directory = entryFile.substr(0, entryFile.find_last_of('.')) + "_out";
+    std::string baseDirectory = directory;
+    int suffix = 1;
 
-    try {
-        // Crée le répertoire
-        if (fs::create_directory(directory)) {
-            std::cout << "Repertoire cree : " << directory << "\n"; // Confirmation
-        }
-    } catch (const std::exception &e) {
-        // Gestion des erreurs lors de la création du répertoire
-        std::cerr << "Erreur lors de la création du répertoire : " << e.what() << "\n";
+    // Vérifie si le répertoire existe déjà et génère un nom unique
+    while (fs::exists(directory)) {
+        directory = baseDirectory + "_" + std::to_string(suffix);
+        ++suffix;
+    }
+
+    // Tente de créer le répertoire et vérifie si cela a réussi
+    if (fs::create_directory(directory)) {
+    } else {
+        std::cerr << "Erreur : impossible de créer le répertoire " << directory << "\n";
     }
 }
 
