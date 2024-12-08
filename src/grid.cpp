@@ -15,6 +15,10 @@ grid::grid(int w, int h) : width(w), height(h), cells(w, std::vector<Cell>(h)) {
 const Cell& grid::getCell(int x, int y) const {
     return cells[x][y];
 }
+// Accesseur constant pour obtenir une cellule spécifique de la grille (accès en lecture)
+ Cell& grid::getCell(int x, int y)  {
+    return cells[x][y];
+}
 
 // Fonction pour récupérer l'état entier de la grille sous forme de matrice
 std::vector<std::vector<Cell>> grid::getState() const {
@@ -96,6 +100,7 @@ void grid::update() {
     }
 }
 
+/*
 // Fonction de mise à jour sans exécution parallèle, utilisée pour un test simple
 void grid::updateTest() {
     std::vector<std::vector<Cell>> currentState = cells;  // Sauvegarde de l'état actuel pour référence
@@ -114,3 +119,4 @@ void grid::updateTest() {
         }
     }
 }
+*/

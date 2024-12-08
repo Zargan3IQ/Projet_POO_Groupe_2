@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ostream>
-#include "Cell.h"
+#include "cell.h"
 #include "grid.h"
 
 // Retourne l'état actuel de la cellule (vivante ou morte).
@@ -8,7 +8,7 @@ int Cell::getIsAlive() const {
     return isAlive;
 }
 
-// Définit l'état actuel de la cellule avec validation.
+// Définit l'état actuel de la cellule avec vérification.
 void Cell::setIsAlive(int state) {
     // Vérifie que l'état est bien entre 0 et 3.
     if (state >= 0 && state <= 3) {
@@ -24,7 +24,7 @@ int Cell::getWillBeAlive() const {
     return willBeAlive;
 }
 
-// Définit l'état futur de la cellule avec validation.
+// Définit l'état futur de la cellule avec vérification.
 void Cell::setWillBeAlive(int state) {
     // Vérifie que l'état est bien entre 0 et 3.
     if (state >= 0 && state <= 3) {

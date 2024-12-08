@@ -23,12 +23,13 @@ public:
     bool getisToric() const; // Vérifie si la grille est torique.
     void setisToric(bool Toric); // Définit si la grille est torique.
     const Cell& getCell(int x, int y) const; // Accède à une cellule en lecture seule.
+    Cell& getCell(int x, int y);
     std::vector<std::vector<Cell>> getState() const; // Obtient l'état actuel de la grille sous forme de matrice 2D de cellules.
 
     void initializeWithState(const std::vector<std::vector<int>> &initialState); // Initialise la grille avec un état donné.
     bool compareMatrix(const std::vector<std::vector<Cell>>& other) const; // Compare l'état actuel de la grille avec une autre matrice.
     void update(); // Met à jour l'état de la grille selon les règles définies.
-    void updateTest(); // Met à jour la grille pour les tests
+    //void updateTest(); // Met à jour la grille pour les tests
 };
 
 #endif // GRID_H

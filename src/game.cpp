@@ -52,19 +52,28 @@ void game::initializeGame() {
         std::cin >> mode;
     }
 
-    // Active ou désactive la grille torique en fonction du choix de l'utilisateur
     char toricChoice;
     std::cout << "Voulez-vous activer la grille torique ? (Y/N) : " << std::endl;
     std::cin >> toricChoice;
+
+    while (toricChoice != 'Y' && toricChoice != 'y' && toricChoice != 'N' && toricChoice != 'n') {
+        // Vérifie si l'entrée est valide
+        std::cout << "Entree invalide. Veuillez entrer 'Y' ou 'N'." << std::endl;
+        std::cin >> toricChoice;
+    }
+
+    // Appliquer le choix de l'utilisateur
     Grid.setisToric(toricChoice == 'Y' || toricChoice == 'y');
 
-    std::cout << "Combien d'itérations voulez vous ? : " << std::endl;
+
+    std::cout << "Combien d'iterations voulez vous ? : " << std::endl;
     std::cin >> generationLimit;
 
     // Configuration spécifique au mode graphique
     if (mode == 2) {
         std::cout << "Entrez le temps entre chaque intervalle (ms) : " << std::endl;
         std::cin >> intervalTime; // Temps d'intervalle personnalisé
+
         int cellSize = 10; // Taille des cellules dans la fenêtre graphique
         interface = new Interface(Grid, cellSize); // Crée l'interface graphique
         interface->render(Grid, 0); // Affiche la génération initiale

@@ -31,7 +31,7 @@ std::vector<std::vector<int>> FileManager::readGrid(int &width, int &height) {
         exit(EXIT_FAILURE); // Arrête le programme en cas d'erreur
     }
 
-    if (FileInput.peek() == std::ifstream::traits_type::eof()) { // Vérifie si le fichier est vide
+    if (FileInput.peek() == std::ifstream::traits_type::eof()) { // Vérifie si le fichier est vide, peek permet de voir le prochain caractère a lire et si il n'existe pas et donc que le fichier est vide peek reneverras eof
         std::cerr << "Erreur : Le fichier est vide.\n";
         exit(EXIT_FAILURE);
     }

@@ -6,6 +6,8 @@
 
 int main() {
     testStabilityOfBlocks();
+    testsetisAlive();
+    testsetWillBeAlive();
     testGridState();
     testMatrixComparison();
     testReadFile();
