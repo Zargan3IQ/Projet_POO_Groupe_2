@@ -16,8 +16,14 @@ public:
     // Définit le nom du fichier d'entrée à utiliser.
     void setentryFile(std::string File);
 
+    // Recupere le nom du fichier d'entrée à utiliser.
+    std::string getentryFile();
+
     // Définit le répertoire où les fichiers seront créés/sauvegardés.
     void setDirectory(std::string Directory);
+
+    // Recupere le nom du fichier d'entrée à utiliser.
+    std::string getDirectory();
 
     // Permet de choisir un fichier interactivement.
     void choseFile();

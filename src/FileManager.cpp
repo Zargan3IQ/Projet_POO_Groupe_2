@@ -12,9 +12,18 @@ void FileManager::setentryFile(std::string File) {
     entryFile = File; // Stocke le nom du fichier d'entrée
 }
 
+std::string FileManager::getentryFile() {
+    return entryFile;
+}
+
+
 // Définit le répertoire pour les fichiers de sortie
 void FileManager::setDirectory(std::string Directory) {
     directory = Directory; // Stocke le chemin du répertoire
+}
+
+std::string FileManager::getDirectory() {
+    return directory;
 }
 
 // Permet à l'utilisateur de saisir le nom du fichier d'entrée via la console
@@ -70,13 +79,13 @@ std::vector<std::vector<int>> FileManager::readGrid(int &width, int &height) {
     // Vérifie s'il reste des données supplémentaires dans le fichier
     int extraData;
     if (FileInput >> extraData) {
-        std::cerr << "Erreur : Trop de données dans le fichier, dépassant les dimensions spécifiées.\n";
+        std::cerr << "Erreur : Trop de donnees dans le fichier, depassant les dimensions specifiees.\n";
         exit(EXIT_FAILURE);
     }
 
     // Vérifie que le nombre total de cellules correspond aux dimensions spécifiées
     if (cellCount != width * height) {
-        std::cerr << "Erreur : Les dimensions spécifiées ne correspondent pas aux données fournies.\n";
+        std::cerr << "Erreur : Les dimensions specifiees ne correspondent pas aux donnees fournies.\n";
         exit(EXIT_FAILURE);
     }
 
@@ -100,7 +109,7 @@ void FileManager::createDirectory() {
     // Tente de créer le répertoire et vérifie si cela a réussi
     if (fs::create_directory(directory)) {
     } else {
-        std::cerr << "Erreur : impossible de créer le répertoire " << directory << "\n";
+        std::cerr << "Erreur : impossible de creer le repertoire " << directory << "\n";
     }
 }
 

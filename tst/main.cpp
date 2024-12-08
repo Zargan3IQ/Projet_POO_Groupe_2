@@ -8,8 +8,14 @@ int main() {
     testStabilityOfBlocks();
     testsetisAlive();
     testsetWillBeAlive();
+    testsetHeight();
+    testsetWidth();
+    testsetToric();
+    testInitializeWithState();
     testGridState();
     testMatrixComparison();
+    testsetentryFile();
+    testsetdirectory();
     testReadFile();
     testSaveFile();
     testPerformance();

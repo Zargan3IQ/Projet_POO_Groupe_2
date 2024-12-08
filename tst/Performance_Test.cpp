@@ -3,8 +3,8 @@
 #include "../src/grid.h"
 
 static void testPerformance() {
-    const int width = 90;
-    const int height = 90;
+    const int width = 150;
+    const int height = 150;
     const int iterations = 2000;
 
     grid g(width, height);
@@ -22,9 +22,9 @@ static void testPerformance() {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 
-    std::cout << "Performance test with multithreading : " << iterations << " iterations on a "
-              << width << "x" << height << " grid took "
-              << duration.count() << " seconds." << std::endl;
+    std::cout << "Test de performance avec multithreading : " << iterations << " iterations avec une grille "
+              << width << "x" << height << " prend "
+              << duration.count() << " secondes." << std::endl;
 
     g.initializeWithState(initialState);
 
@@ -38,7 +38,7 @@ static void testPerformance() {
             // Utilisation des dimensions de `g`
             for (int y = 0; y < g.getHeight(); y++) {
                 g.getCell(x, y).update(x, y, g);  // Mise à jour en fonction des règles du jeu de la vie
-    
+
             }
         }
 
@@ -54,8 +54,8 @@ static void testPerformance() {
     auto end2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration2 = end2 - start2;
 
-    std::cout << "Performance test without multithreading : " << iterations << " iterations on a "
-              << width << "x" << height << " grid took "
-              << duration2.count() << " seconds." << std::endl;
+    std::cout << "Test de performance sans multithreading : " << iterations << " iterations avec une grille "
+              << width << "x" << height << " prend "
+              << duration2.count() << " secondes." << std::endl;
 
 }

@@ -20,6 +20,8 @@ public:
 
     int getWidth() const; // Obtient la largeur de la grille.
     int getHeight() const; // Obtient la hauteur de la grille.
+    void setHeight(int Height);
+    void setWidth(int Width);
     bool getisToric() const; // Vérifie si la grille est torique.
     void setisToric(bool Toric); // Définit si la grille est torique.
     const Cell& getCell(int x, int y) const; // Accède à une cellule en lecture seule.

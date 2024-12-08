@@ -4,6 +4,20 @@
 #include <iostream>
 #include <fstream>
 
+static void testsetentryFile() {
+    FileManager fileManager;
+    fileManager.setentryFile("test.txt");
+    assert(fileManager.getentryFile() == "test.txt");
+    std::cout << "Test reussi : Le setter EntryFile fonctionne" << std::endl;
+}
+
+static void testsetdirectory() {
+    FileManager fileManager;
+    fileManager.setDirectory("Directory/test.txt");
+    assert(fileManager.getDirectory() == "Directory/test.txt");
+    std::cout << "Test reussi : Le setter Directory fonctionne" << std::endl;
+}
+
 static void testReadFile() {
 
     int width = 3, height = 3;

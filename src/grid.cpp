@@ -6,7 +6,7 @@
 grid::grid(int w, int h) : width(w), height(h), cells(w, std::vector<Cell>(h)) {
     // Vérification que les dimensions sont valides (positives)
     if (w <= 0 || h <= 0) {
-        std::cerr << "Error in grid initialization, incorrect width or height";
+        std::cerr << "Erreur dans l'initialisation de la grille, hauteur ou largeur incorrect";
         exit(EXIT_FAILURE);  // Quitter l'application si les dimensions sont incorrectes
     }
 }
@@ -28,6 +28,16 @@ std::vector<std::vector<Cell>> grid::getState() const {
 // Accesseur pour obtenir la largeur de la grille
 int grid::getWidth() const {
     return width;
+}
+
+// Mutateur pour modifier la hauteur de la grille
+void grid::setHeight(int Height) {
+    height = Height;
+}
+
+// Mutateur pour modifier la largeur de la grille
+void grid::setWidth(int Width) {
+    width = Width;
 }
 
 // Accesseur pour obtenir la hauteur de la grille
@@ -100,23 +110,3 @@ void grid::update() {
     }
 }
 
-/*
-// Fonction de mise à jour sans exécution parallèle, utilisée pour un test simple
-void grid::updateTest() {
-    std::vector<std::vector<Cell>> currentState = cells;  // Sauvegarde de l'état actuel pour référence
-
-    // Mise à jour de toutes les cellules, sans optimisation parallèle
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-            cells[x][y].update(x, y, *this);  // Mise à jour en fonction des règles du jeu de la vie
-        }
-    }
-
-    // Applique les mises à jour (transition des états "souhaités" vers l'état final)
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-            cells[x][y].setIsAlive(cells[x][y].getWillBeAlive());  // Mise à jour finale de l'état des cellules
-        }
-    }
-}
-*/
