@@ -1,7 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include "Cell.h" // Inclut la définition de la classe Cell
+#include "cell.h" // Inclut la définition de la classe Cell
 #include <vector> // Utilisé pour stocker une grille 2D de cellules
 
 
