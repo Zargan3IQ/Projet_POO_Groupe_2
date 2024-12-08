@@ -21,6 +21,7 @@ Ce projet implémente le célèbre "Jeu de la Vie" de John Conway en C++. Le Jeu
 
 - Un compilateur C++ compatible avec la norme **C++11** ou supérieure (par exemple, g++, clang).
 - Un système d'exploitation capable d'exécuter des applications C++.
+- Une fois le programme téléchargé ne pas oublier de load le cmake.
 
 ## Initialisation
 
